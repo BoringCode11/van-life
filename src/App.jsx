@@ -3,13 +3,11 @@ import { Home, About } from './components/index';
 
 function App() {
   return (
-    <>
+    <div className='app'>
       <BrowserRouter>
-        <header
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
-        >
+        <header>
           <h2>
-            <Link to='/'>#nav-life</Link>
+            <Link to='/'>#VAN-LIFE</Link>
           </h2>
           <nav>
             <Link to='/about'>about</Link>
@@ -20,8 +18,10 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
         </Routes>
+
+        <footer>&copy; 2023 #VANLIFE</footer>
       </BrowserRouter>
-    </>
+    </div>
   )
 }
 

@@ -9,3 +9,103 @@
 body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
+
+.app {
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff7ed;
+  padding-block: 1.8em;
+  padding-inline: 2em;
+}
+
+.hero-sec {
+  background-image: url('./assets/mobile-bgc.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding-inline: 2em;
+  width: 100%;
+  color: #fff7ed;
+  padding-block: 9em;
+}
+
+.hero-sec > *:not(:last-child) {
+  color: #fff7ed;
+  margin-bottom: 0.6em;
+}
+
+.btn {
+  font: inherit;
+  display: block;
+  width: 100%;
+  padding-block: 1em;
+  margin-top: 2em;
+  border: none;
+  color: #fff7ed;
+  background-color: #ff8c38;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0.3em;
+}
+
+.about > .cover {
+  height: 270px;
+  width: 100%;
+  background-image: url('./assets/about-cover.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  padding-inline: 2em;
+}
+
+.container > h1 {
+  font-size: 2rem;
+  line-height: 38px;
+  margin-block: 32px;
+}
+
+.container > p {
+  margin-bottom: 1.8em;
+}
+
+.explore {
+  background-color: #ffcc8d;
+  padding: 2em;
+  border-radius: 0.5em;
+  margin-bottom: 2.5em;
+}
+
+.explore > h3 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 32px;
+  margin-bottom: 32px;
+}
+
+.explore > button {
+  font: inherit;
+  cursor: pointer;
+  color: aliceblue;
+  border: none;
+  background-color: #161616;
+  padding: 12px 24px;
+  border-radius: 0.3em;
+}
+
+footer {
+  background-color: #252525;
+  color: aliceblue;
+  /* position: absolute;
+  bottom: 0;
+  width: 100%; */
+  text-align: center;
+  padding-block: 1.2em;
+}
