@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   margin: 0;
   padding: 0;
@@ -10,7 +14,7 @@ body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-.app {
+/* .app {
   min-height: 100vh;
 }
 
@@ -21,18 +25,16 @@ header {
   background-color: #fff7ed;
   padding-block: 1.8em;
   padding-inline: 2em;
-}
+} */
 
 .hero-sec {
   background-image: url('./assets/mobile-bgc.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  padding-inline: 2em;
-  width: 100%;
-  color: #fff7ed;
-  padding-block: 9em;
 }
+
+/*
 
 .hero-sec > *:not(:last-child) {
   color: #fff7ed;
@@ -52,8 +54,9 @@ header {
   cursor: pointer;
   border-radius: 0.3em;
 }
+ */
 
-.about > .cover {
+.cover {
   height: 270px;
   width: 100%;
   background-image: url('./assets/about-cover.png');
@@ -62,6 +65,7 @@ header {
   background-size: cover;
 }
 
+/*
 .container {
   padding-inline: 2em;
 }
@@ -103,9 +107,9 @@ header {
 footer {
   background-color: #252525;
   color: aliceblue;
-  /* position: absolute;
+ position: absolute;
   bottom: 0;
-  width: 100%; */
+  width: 100%; 
   text-align: center;
   padding-block: 1.2em;
-}
+} */

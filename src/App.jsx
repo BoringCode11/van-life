@@ -3,14 +3,14 @@ import { Home, About } from './components/index';
 
 function App() {
   return (
-    <div className='app'>
+    <div className='app min-h-screen container'>
       <BrowserRouter>
-        <header>
-          <h2>
+        <header className='flex items-center justify-between py bg-[#FFF7ED] py-5 px-7'>
+          <h2 className='text-[26px] font-bold'>
             <Link to='/'>#VAN-LIFE</Link>
           </h2>
           <nav>
-            <Link to='/about'>about</Link>
+            <Link className='text-[18px]' to='/about'>about</Link>
           </nav>
         </header>
 
@@ -19,7 +19,9 @@ function App() {
           <Route path='/about' element={<About />} />
         </Routes>
 
-        <footer>&copy; 2023 #VANLIFE</footer>
+        <footer className='px-7 py-4 bg-[#252525] text-gray-50 text-center'>
+          &copy; 2023 #VANLIFE
+        </footer>
       </BrowserRouter>
     </div>
   )
