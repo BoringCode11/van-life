@@ -1,0 +1,63 @@
+import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+
+function Van() {
+  const [van, setVan] = useState(null);
+  const { id } = useParams();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.get(`/api/vans/${id}`);
+        const { vans } = res.data;
+        setVan(vans);
+      } catch (error) {
+        console.error(error.message);
+      }
+    })()
+  }, [id]);
+
+  return (
+    <div className='px-7'>
+      <Link
+        to='/vans'
+        className='underline text-[18px] text-[#201F1D] block mt-[24px]'>
+        Back to all vans
+      </Link>
+      {
+        van ?
+          <div className='text-[#161616]'>
+            <img
+              className='rounded-lg mt-[32px] mb-[46px]'
+              src={van.imageUrl}
+              alt={van.name}
+            />
+
+            <span className={`inline-block text-[17px] font-semibold rounded-md text-white px-[42px] py-[12px] mb-[26px] align-top capitalize bg-[${van.type === 'rugged' ? '#115E59' : van.type === 'simple' ? '#E17654' : '#161616'}]`}>
+              {van.type}
+            </span>
+
+            <h2 className='text-[36px] text-[#161616] font-bold leading-10'>{van.name}</h2>
+
+            <p className='text-[22px] text-[#161616] font-semibold mb-[16px]'>
+              ${van.price}
+              <span className='text-[18px]'>/day</span>
+            </p>
+
+            <p className='text-[17px] mb-[32px]'>The Modest Explorer is a van designed to get you out of the house and into nature. This beauty is equipped with solar panels, a composting toilet, a water tank and kitchenette. The idea is that you can pack up your home and escape for a weekend or even longer!</p>
+
+            <button className='bg-[#FF8C38] py-[12px] font-semibold text-[18px] text-white w-full rounded-md mb-[36px]'>
+              Rent this van
+            </button>
+
+          </div>
+          :
+          <p>Loading...</p>
+      }
+    </div>
+  );
+}
+
+export default Van;
