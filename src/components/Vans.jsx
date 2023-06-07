@@ -1,6 +1,6 @@
-import axios from "axios";
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
+import axios from 'axios';
 
 function Van(props) {
   const { type, price, imageUrl, name, id } = props;
@@ -38,7 +38,7 @@ function Vans() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get('/api/vans');
+        const res = await axios('/api/vans');
         const { vans } = res.data;
         setVans(vans);
       } catch (error) {
