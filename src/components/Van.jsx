@@ -1,7 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-
 
 function Van() {
   const [van, setVan] = useState(null);
@@ -10,9 +8,10 @@ function Van() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get(`/api/vans/${id}`);
-        const { vans } = res.data;
+        const response = await fetch(`/api/vans/${id}`);
+        const { vans } = await response.json();
         setVan(vans);
+        console.log(vans);
       } catch (error) {
         console.error(error.message);
       }
@@ -35,7 +34,7 @@ function Van() {
               alt={van.name}
             />
 
-            <span className={`inline-block text-[17px] font-semibold rounded-md text-white px-[42px] py-[12px] mb-[26px] align-top capitalize bg-[${van.type === 'rugged' ? '#115E59' : van.type === 'simple' ? '#E17654' : '#161616'}]`}>
+            <span className={`inline-block text-[17px] font-semibold rounded-md px-[42px] py-[12px] mb-[26px] align-top capitalize bg-gray-200 text-blue-950`}>
               {van.type}
             </span>
 

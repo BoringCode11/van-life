@@ -1,13 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
-import axios from 'axios';
 
 function Van(props) {
   const { type, price, imageUrl, name, id } = props;
-
-  const bgc = type === 'rugged' ? '#115E59' :
-    type === 'simple' ? '#E17654'
-      : '#161616';
 
   return (
     <Link to={`/vans/${id}`}>
@@ -24,7 +19,7 @@ function Van(props) {
           <span>${price}</span>
         </div>
         <div className="flex justify-between align-center pt-[8px]">
-          <span className={`text-[16px] bg-[${bgc}] font-semibold rounded-md text-white px-[18px] py-[6px] align-top capitalize`}>{type}</span>
+          <span className={`text-[16px] text-black font-semibold rounded-md px-[18px] py-[6px] bg-gray-200 align-top capitalize`}>{type}</span>
           <span className="relative top-[-10px] text-[18px]"><sup>/day</sup></span>
         </div>
       </div>
@@ -38,8 +33,8 @@ function Vans() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios('/api/vans');
-        const { vans } = res.data;
+        const response = await fetch('/api/vans');
+        const { vans } = await response.json();
         setVans(vans);
       } catch (error) {
         console.error(`Something went wrong: ${error.message}`);
