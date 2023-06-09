@@ -1,31 +1,30 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home, About, Vans, Van } from './components/index';
+import Layout from './components/layout-routes/Layout';
 import './server';
+import HostLayout from './components/layout-routes/HostLayout';
+import Dashboard from './components/Host/Dashboard';
+import Income from './components/Host/Income';
+import Reviews from './components/Host/Reviews';
 
 function App() {
   return (
     <div className='app min-h-screen container'>
       <BrowserRouter>
-        <header className='flex items-center justify-between py bg-[#FFF7ED] py-5 px-7'>
-          <h2 className='text-[26px] font-bold'>
-            <Link to='/'>#VAN-LIFE</Link>
-          </h2>
-          <nav>
-            <Link className='text-[18px]' to='/about'>About</Link>
-            <Link className='text-[18px] pl-5' to='/vans'>Vans</Link>
-          </nav>
-        </header>
-
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/vans' element={<Vans />} />
-          <Route path='/vans/:id' element={<Van />} />
-        </Routes>
+          <Route element={<Layout />}>
+            <Route path='/' element={<Home />} />
+            <Route path='about' element={<About />} />
+            <Route path='vans' element={<Vans />} />
+            <Route path='vans/:id' element={<Van />} />
 
-        <footer className='px-7 py-4 bg-[#252525] text-gray-50 text-center'>
-          &copy; 2023 #VANLIFE
-        </footer>
+            <Route path='host' element={<HostLayout />} >
+              <Route index element={<Dashboard />} />
+              <Route path='income' element={<Income />} />
+              <Route path='reviews' element={<Reviews />} />
+            </Route>
+          </Route>
+        </Routes>
       </BrowserRouter>
     </div>
   )
