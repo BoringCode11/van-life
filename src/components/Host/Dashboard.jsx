@@ -52,7 +52,7 @@ function Vanlist() {
 
 function Dashboard() {
   return (
-    <>
+    <div className='bg-[#fff7ed]'>
       <div className="bg-[#FFEAD0] px-7 py-[38px]">
         <div className="flex items-center justify-between">
           <div className="text-[#161616]">
@@ -84,7 +84,7 @@ function Dashboard() {
         <Vanlist />
       </div>
 
-    </>
+    </div>
   )
 }
 
