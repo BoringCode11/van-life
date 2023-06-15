@@ -8,7 +8,7 @@ function VanDetailsLayout() {
   const style = {
     color: "black",
     textDecoration: "Underline",
-    fontWeight: "700"
+    fontWeight: "600"
   }
 
   useEffect(() => {
@@ -76,7 +76,7 @@ function VanDetailsLayout() {
             </NavLink>
           </nav>
 
-          <Outlet />
+          <Outlet context={van} />
         </div>
         :
         <>Loading...</>}
