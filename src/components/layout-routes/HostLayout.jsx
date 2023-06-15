@@ -4,7 +4,7 @@ function HostLayout() {
   const style = {
     color: "black",
     textDecoration: "Underline",
-    fontWeight: "500"
+    fontWeight: "bold"
   }
 
   return (
@@ -14,7 +14,7 @@ function HostLayout() {
           className="pr-7 hover:text-black hover:underline"
           end
           style={({ isActive }) => isActive ? style : null}
-          to='/host'
+          to='.'
         >
           Dashboard
         </NavLink>
