@@ -1,11 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from "react";
 
-function Van(props) {
-  const { type, price, imageUrl, name, id } = props;
-
+function Van({ type, price, imageUrl, name, id }) {
   return (
-    <Link to={`/vans/${id}`}>
+    <Link to={id}>
       <div className="mb-10">
         <img
           src={imageUrl}
@@ -29,6 +27,8 @@ function Van(props) {
 
 function Vans() {
   const [vans, setVans] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const typeFilter = searchParams.get('type');
 
   useEffect(() => {
     (async () => {
@@ -42,26 +42,58 @@ function Vans() {
     })()
   }, []);
 
+  let displayedVans;
+  if (vans) {
+    displayedVans = typeFilter
+      ? vans.filter(van => van.type.toLowerCase() === typeFilter)
+      : vans;
+  }
+
+  function setParams(key, value) {
+    setSearchParams(params => {
+      return value == null ? params.delete(key) : params.set(key, value);
+    })
+  }
+
   return (
     <div className="mx-auto w-fit px-7">
-      <h2 className="text-[36px] font-bold mt-[32px] mb-[22px]">Explore our van options</h2>
-      <div className="filters flex justify-between items-center">
-        <span className="bg-[#FFEAD0] text-[16px] text-[#4D4D4D] px-[26px] py-[8px] rounded-md cursor-pointer">Simple</span>
-        <span className="bg-[#FFEAD0] text-[16px] text-[#4D4D4D] px-[26px] py-[8px] rounded-md cursor-pointer">Luxury</span>
-        <span className="bg-[#FFEAD0] text-[16px] text-[#4D4D4D] px-[26px] py-[8px] rounded-md cursor-pointer">Rugged</span>
-        <span className="underline text-[18px] text-[#4D4D4D] cursor-pointer">clear filters</span>
-      </div>
+      <nav className='text-[white] flex'>
+        <button
+          onClick={() => setParams('type', 'simple')}
+          className={`mr-3 bg-[#FFEAD0] py-2 px-6 rounded-md hover:bg-[#E17654] ${typeFilter === 'simple' ? 'simple-active' : ''}`}
+        >
+          Simple
+        </button>
+        <button
+          onClick={() => setParams('type', 'rugged')}
+          className={`mr-3 bg-[#FFEAD0] py-2 px-6 rounded-md hover:bg-[#115E59] ${typeFilter === 'rugged' ? 'rugged-active' : ''}`}
+        >
+          Rugged
+        </button>
+        <button
+          onClick={() => setParams('type', 'luxury')}
+          className={`mr-3 bg-[#FFEAD0] py-2 px-6 rounded-md hover:bg-[#161616] ${typeFilter === 'luxury' ? 'luxury-active' : ''}`}
+        >
+          Luxury
+        </button>
 
-      <div className="vans flex flex-wrap align-center justify-between mt-8">
+        {typeFilter && <button
+          onClick={() => setParams('type', null)}
+          className='underline text-[#141414] text-[18px]'
+        >
+          Clear searches
+        </button>}
+      </nav>
+
+      <div className="vans gap-4 flex flex-wrap align-center justify-between mt-8">
         {vans ?
-          vans.map(van => (
+          displayedVans.map(van => (
             <Van key={van.id} {...van} />
           ))
           :
           <h2>Loading...</h2>
         }
       </div>
-
     </div>
   )
 }

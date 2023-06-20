@@ -17,21 +17,21 @@ function Header() {
           <NavLink
             className={`text-[18px] hover:text-gray-500 hover:underline`}
             style={({ isActive }) => isActive ? style : null}
-            to='/host'
+            to='host'
           >
             Host
           </NavLink>
           <NavLink
             className='text-[18px] pl-5 hover:text-gray-500 hover:underline'
             style={({ isActive }) => isActive ? style : null}
-            to='/about'
+            to='about'
           >
             About
           </NavLink>
           <NavLink
             className='text-[18px] pl-5 hover:text-gray-500 hover:underline'
             style={({ isActive }) => isActive ? style : null}
-            to='/vans'
+            to='vans'
           >
             Vans
           </NavLink>

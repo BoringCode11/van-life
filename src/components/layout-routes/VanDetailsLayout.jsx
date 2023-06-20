@@ -33,6 +33,7 @@ function VanDetailsLayout() {
       >
         Back to all vans
       </Link>
+
       {van ?
         <div className="bg-white py-5 px-7 mt-6 rounded-lg text-[#4D4D4D] mx-7">
           <div className="flex mt-3">

@@ -44,7 +44,12 @@ function VansList() {
     <div className="px-7 pt-6 bg-[#fff7ed]">
       <h3 className='font-bold text-[24px] pb-4'>Your listed vans</h3>
 
-      {vans ? vans.map(van => <Van key={van.id} {...van} />) : <p>Loading...</p>}
+      {
+        vans ?
+          vans.map(van => <Van key={van.id} {...van} />)
+          :
+          <p>Loading...</p>
+      }
     </div>
   )
 }

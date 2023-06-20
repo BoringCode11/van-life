@@ -14,24 +14,32 @@ body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-/* .app {
-  min-height: 100vh;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #fff7ed;
-  padding-block: 1.8em;
-  padding-inline: 2em;
-} */
-
 .hero-sec {
   background-image: url('./assets/mobile-bgc.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+
+.cover {
+  height: 270px;
+  width: 100%;
+  background-image: url('./assets/about-cover.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.simple-active {
+  background-color: #e17654;
+}
+
+.rugged-active {
+  background-color: #115e59;
+}
+
+.luxury-active {
+  background-color: #161616;
 }
 
 /*
@@ -55,15 +63,6 @@ header {
   border-radius: 0.3em;
 }
  */
-
-.cover {
-  height: 270px;
-  width: 100%;
-  background-image: url('./assets/about-cover.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 
 /*
 .container {
