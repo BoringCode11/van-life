@@ -1,9 +1,12 @@
 import { Link, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from "react";
+import { fetchData } from '../fetchData';
 
-function Van({ type, price, imageUrl, name, id }) {
+function Van(
+  { type, price, imageUrl, name, id, searchParams, typeFilter }
+) {
   return (
-    <Link to={id}>
+    <Link to={id} state={{ search: searchParams, type: typeFilter }}>
       <div className="mb-10">
         <img
           src={imageUrl}
@@ -27,19 +30,24 @@ function Van({ type, price, imageUrl, name, id }) {
 
 function Vans() {
   const [vans, setVans] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = searchParams.get('type');
 
   useEffect(() => {
     (async () => {
       try {
-        const response = await fetch('/api/vans');
-        const { vans } = await response.json();
+        const data = await fetchData();
+        const { vans } = data;
         setVans(vans);
       } catch (error) {
+        setError(!error);
         console.error(`Something went wrong: ${error.message}`);
+      } finally {
+        setLoading(false);
       }
-    })()
+    })();
   }, []);
 
   let displayedVans;
@@ -53,6 +61,14 @@ function Vans() {
     setSearchParams(params => {
       return value == null ? params.delete(key) : params.set(key, value);
     })
+  }
+
+  if (loading) {
+    return <h1>Loading...</h1>
+  }
+
+  if (error) {
+    return <h1>something went wrong...</h1>
   }
 
   return (
@@ -88,7 +104,7 @@ function Vans() {
       <div className="vans gap-4 flex flex-wrap align-center justify-between mt-8">
         {vans ?
           displayedVans.map(van => (
-            <Van key={van.id} {...van} />
+            <Van key={van.id} {...van} searchParams={`${searchParams.toString()}`} typeFilter={typeFilter} />
           ))
           :
           <h2>Loading...</h2>

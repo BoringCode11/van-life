@@ -1,9 +1,18 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 function Van() {
   const [van, setVan] = useState(null);
   const { id } = useParams();
+
+  const location = useLocation();
+  const search = location.state?.search || '';
+  const { type } = location.state;
+
+  const formatType = str => {
+    return search ?
+      str.charAt(0).toUpperCase() + str.slice(1) : null;
+  }
 
   useEffect(() => {
     (async () => {
@@ -11,7 +20,6 @@ function Van() {
         const response = await fetch(`/api/vans/${id}`);
         const { vans } = await response.json();
         setVan(vans);
-        console.log(vans);
       } catch (error) {
         console.error(error.message);
       }
@@ -21,9 +29,10 @@ function Van() {
   return (
     <div className='px-7'>
       <Link
-        to='/vans'
+        to={`..?${search ? search : ''}`}
+        relative='path'
         className='underline text-[18px] text-[#201F1D] block mt-[24px]'>
-        Back to all vans
+        Back to {formatType(type) || 'All'} vans
       </Link>
       {
         van ?

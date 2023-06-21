@@ -2,7 +2,7 @@ import {
   BrowserRouter, Routes, Route
 } from 'react-router-dom';
 import {
-  Home, About, Vans, Van
+  Home, About, Vans, Van, NotFound
 } from './components/index';
 import {
   HostLayout, Layout, VanDetailsLayout
@@ -35,6 +35,8 @@ function App() {
                 <Route path='photos' element={<Photos />} />
               </Route>
             </Route>
+
+            <Route path='*' element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>
